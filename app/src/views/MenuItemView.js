@@ -10,8 +10,10 @@ define(function(require, exports, module) {
     function MenuItemView() {
         View.apply(this, arguments);
 
+        this.iconSize = new Transitionable(this.options.size);
+
         this.rootModifier = new StateModifier({
-            size: this.options.size
+            size: this.iconSize.get()
         });
 
         this.mainNode = this.add(this.rootModifier);
@@ -31,7 +33,6 @@ define(function(require, exports, module) {
 
     function _createMenuItemBackground() {
         var menuItemSurface = new Surface({
-            size: this.options.size,
             properties: {
                 zIndex: 1,
                 background: this.options.color
@@ -43,7 +44,7 @@ define(function(require, exports, module) {
         // use for listening to clicks on button
         menuItemSurface.on('mousedown', function() {
             console.log('down');
-            this._eventOutput.emit('click');
+            this.iconSize.set([0,0]);
         }.bind(this));
         menuItemSurface.on('mouseup', function() {
             console.log('up');
