@@ -7,6 +7,7 @@ define(function(require, exports, module) {
     var Walls            = require('famous/physics/constraints/Walls');
     var View             = require('famous/core/View');
     var Surface          = require('famous/core/Surface');
+    var StateModifier    = require('famous/modifiers/StateModifier');
 
     var MenuView         = require('views/MenuView');
 
@@ -16,6 +17,7 @@ define(function(require, exports, module) {
         _createPhysicsEngine.call(this);
         _addSun.call(this);
         _addPlanets.call(this);
+        _addMenu.call(this);
 
     }
 
@@ -83,6 +85,12 @@ define(function(require, exports, module) {
             this.physicsEngine.attach(this.repulsion, planet, this.star);
             this.add(planet).add(planetSurface);
         }
+    }
+
+    function _addMenu() {
+        var menuView = new MenuView();
+        var menuViewModifier = new StateModifier();
+        this.add(menuViewModifier).add(menuView);
     }
 
     module.exports = AppView;
