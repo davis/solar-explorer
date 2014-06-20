@@ -1,0 +1,8 @@
+html {
+  background: #112F41;
+}
+
+.backfaceVisibility {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+}
