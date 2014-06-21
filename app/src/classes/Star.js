@@ -9,6 +9,11 @@ define(function(require, exports, module) {
     var Circle = require('famous/physics/bodies/Circle');
     var GenericSync   = require('famous/inputs/GenericSync');
 
+    /*  a star has:
+     *  - a .particle which is the physics body
+     *  - a .surface which is the renderable
+     *  - a bunch of syncs and listeners for dragging
+     */ 
 
     function Star() {
         this.surface =  new Surface({
