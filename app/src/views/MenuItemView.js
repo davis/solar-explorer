@@ -36,6 +36,7 @@ define(function(require, exports, module) {
             properties: {
                 zIndex: 1,
                 background: this.options.color,
+                color: '#222',
                 border: '2px solid #222'
             }
         });
