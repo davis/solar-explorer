@@ -8,7 +8,9 @@ define(function(require, exports, module) {
     var Lightbox = require('famous/views/Lightbox');
     var Easing = require('famous/transitions/Easing');
 
+    var MainMenuView   = require('views/MainMenuView');
     var Level1View = require('views/levels/Level1View');
+    var Level2View = require('views/levels/Level2View');
 
     function AppView() {
         View.apply(this, arguments);
@@ -19,6 +21,7 @@ define(function(require, exports, module) {
         this.mainNode = this.add(this.rootModifier);
 
         _createLightbox.call(this);
+        _setListeners.call(this);
     }
 
     AppView.prototype = Object.create(View.prototype);
@@ -45,9 +48,18 @@ define(function(require, exports, module) {
         this.lightbox = new Lightbox(this.options.lightboxOpts);
         this.mainNode.add(this.lightbox);
 
+        this.levels.push(new MainMenu());
         this.levels.push(new Level1View());
+        this.levels.push(new Level2View());
 
         this.showCurrentLevel();
+    }
+
+    function _setListeners() {
+        this.levels[this.currentIndex].on('nextLevel', function() {
+            console.log(this)
+            this.showNextLevel();
+        }.bind(this));
     }
 
     AppView.prototype.showCurrentLevel = function() {
@@ -55,8 +67,15 @@ define(function(require, exports, module) {
         var level = this.levels[this.currentIndex];
         this.lightbox.show(level, function() {
             this.ready = true;
-            // level.fadeIn();
         }.bind(this));
+    };
+
+    AppView.prototype.showNextLevel = function() {
+        if (!this.ready) return;
+
+        this.currentIndex++;
+        if (this.currentIndex === this.levels.length) this.currentIndex = 0;
+        this.showCurrentLevel();
     };
 
     module.exports = AppView;

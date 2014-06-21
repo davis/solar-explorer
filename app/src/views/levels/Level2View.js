@@ -1,4 +1,4 @@
-/*** Level1.js ***/
+/*** Level2.js ***/
 
 define(function(require, exports, module) {
     var PhysicsEngine = require('famous/physics/PhysicsEngine');
@@ -18,7 +18,7 @@ define(function(require, exports, module) {
 
     var MenuView      = require('views/MenuView');
 
-    function Level1View() {
+    function Level2View() {
         View.apply(this, arguments);
 
         _createPhysicsEngine.call(this);
@@ -28,11 +28,11 @@ define(function(require, exports, module) {
 
     }
 
-    Level1View.prototype = Object.create(View.prototype);
-    Level1View.prototype.constructor = Level1View;
+    Level2View.prototype = Object.create(View.prototype);
+    Level2View.prototype.constructor = Level2View;
 
-    Level1View.DEFAULT_OPTIONS = {
-        numberOfPlanets: 1
+    Level2View.DEFAULT_OPTIONS = {
+        numberOfPlanets: 5
     };
 
     function _createPhysicsEngine() {
@@ -206,10 +206,9 @@ define(function(require, exports, module) {
             } else if(data === 1) {
                 // console.log(this);
                 // this.physicsEngine.removeBody(this.physicsEngine.getBodies()[0]);
-                this._eventOutput.emit('nextLevel', 1);
             }
         }.bind(this));
     }
 
-    module.exports = Level1View;
+    module.exports = Level2View;
 });
