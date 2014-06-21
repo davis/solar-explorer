@@ -15,6 +15,7 @@ define(function(require, exports, module) {
 
     var Star = require('classes/Star');
     var Planet = require('classes/Planet');
+    var Ship = require('classes/Ship');
 
     function Level1View() {
         View.apply(this, arguments);
@@ -30,7 +31,7 @@ define(function(require, exports, module) {
     Level1View.prototype.constructor = Level1View;
 
     Level1View.DEFAULT_OPTIONS = {
-        numberOfPlanets: 1
+        numberOfPlanets: 0
     };
 
     // define physics engine and whatever forces/constraints
@@ -41,17 +42,21 @@ define(function(require, exports, module) {
             range: this.options.range || [100, Infinity]
         });
         this.collision = new Collision();
+
+        // TODO: maybe do this somewhere else?
+        this.stars = [];
+        this.planets = [];
     }
 
     function _addSun() {
         var star = new Star();
         this.physicsEngine.addBody(star.particle);
         this.add(star.modifier).add(star.surface);
+        this.stars.push(star.particle);
         this.star = star; // so we can access it for planets
     }
 
     function _addPlanets() {
-        this.planets = [];
         for(var i = 0; i < this.options.numberOfPlanets; i++) {
             var planet = new Planet();
             this.physicsEngine.addBody(planet.particle);
@@ -69,13 +74,22 @@ define(function(require, exports, module) {
         menuView.on('menuItemClicked', function(data){
             console.log('item', data, 'clicked');
             if(data === 0) {
-                _addSun.call(this);
+                this.play();
             } else if(data === 1) {
                 console.log(this);
                 // this.physicsEngine.removeBody(this.physicsEngine.getBodies()[0]);
                 this._eventOutput.emit('changeLevel', 2);
             }
         }.bind(this));
+    }
+
+    Level1View.prototype.play = function play() {
+        _addShip.call(this);
+    };
+
+    function _addShip() {
+        var ship = new Ship();
+        
     }
 
     module.exports = Level1View;
