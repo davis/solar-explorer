@@ -1,29 +1,30 @@
+/*** DraggableSurfaceParticle.js ***/
+
 define(function(require, exports, module) {
-    var Transform = require('famous/core/Transform');
-    var StateModifier = require('famous/modifiers/StateModifier');
-    var Modifier = require('famous/core/Modifier');
-    var GenericSync   = require('famous/inputs/GenericSync');
+    var Modifier    = require('famous/core/Modifier');
+    var Transform   = require('famous/core/Transform');
+    var GenericSync = require('famous/inputs/GenericSync');
 
     var SurfaceParticle = require('classes/SurfaceParticle');
 
-    function DraggableSurfaceParticle(surface, particle) {
+    function DraggableSurfaceParticle(options) {
 
         // inherit from SurfaceParticle
-        SurfaceParticle.call(this, surface, particle);
+        SurfaceParticle.call(this, options);
 
         // initialize true position
         this._truePosition = this.particle.position.get();
 
         // this is what determines where this shows up in the UI
+        // overrides parent class SurfaceParticle's implementation
         this.modifier = new Modifier({
             transform: function() {
-                console.log(this)
                 return Transform.translate(
                     this.truePosition()[0],
                     this.truePosition()[1],
                     this.truePosition()[2]
                 );
-            }
+            }.bind(this)
         });
 
         this.sync = new GenericSync(['mouse', 'touch']);
@@ -45,11 +46,15 @@ define(function(require, exports, module) {
         // preserve velocity on mouseup
         this.sync.on('end', function(data) {
             this.override = false;
-            this.particle.setVelocity([
-                data.velocity[0],
-                data.velocity[1],
-                0
+            if(options.throwable) {
+                this.particle.setVelocity([
+                    data.velocity[0],
+                    data.velocity[1],
+                    0
                 ]);
+            } else {
+                this.particle.setVelocity([0, 0, 0]);
+            }
         }.bind(this));
     }
 
