@@ -56,14 +56,19 @@ define(function(require, exports, module) {
     }
 
     function _setListeners() {
-        this.levels[this.currentIndex].on('nextLevel', function() {
-            this.showNextLevel();
-        }.bind(this));
 
         this.levels[this.currentIndex].on('startGame', function() {
             this.currentIndex = 0;
             this.showNextLevel();
         }.bind(this));
+
+
+        for(var i = 0; i < this.levels.length; i++) {
+            this.levels[i].on('changeLevel', function(level) {
+                this.currentIndex = level-1; // TODO: don't do this
+                this.showNextLevel();
+            }.bind(this));
+        }
     }
 
     AppView.prototype.showCurrentLevel = function() {
