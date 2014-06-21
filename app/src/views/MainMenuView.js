@@ -29,7 +29,7 @@ define(function(require, exports, module) {
         var surface = new Surface({
             size: [400, 200],
             properties: {
-                background: 'white',
+                background: '#eee',
                 border: '5px solid #222'
             }
         });
@@ -47,6 +47,9 @@ define(function(require, exports, module) {
         var surface = new Surface({
             size: [true, true],
             content: 'solar system',
+            properties: {
+                color: '#222',
+            }
         });
         // TODO: do this during instantiation
         surface.addClass('main-menu-title');
@@ -60,7 +63,7 @@ define(function(require, exports, module) {
 
     function _addPlayBackground() {
         var surface = new Surface({
-            size: [150, 100],
+            size: [150, 76],
             properties: {
                 background: '#ED553B',
                 border: '5px solid #222'
