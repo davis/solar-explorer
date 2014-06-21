@@ -4,16 +4,11 @@ define(function(require, exports, module) {
     var PhysicsEngine = require('famous/physics/PhysicsEngine');
     var Repulsion     = require('famous/physics/forces/Repulsion');
     var Collision     = require('famous/physics/constraints/Collision');
-    var Circle        = require('famous/physics/bodies/Circle');
-    var Walls         = require('famous/physics/constraints/Walls');
     var View          = require('famous/core/View');
-    var Surface       = require('famous/core/Surface');
     var StateModifier = require('famous/modifiers/StateModifier');
-    var Modifier      = require('famous/core/Modifier');
     var GenericSync   = require('famous/inputs/GenericSync');
     var MouseSync     = require('famous/inputs/MouseSync');
     var TouchSync     = require('famous/inputs/TouchSync');
-    var Transform     = require('famous/core/Transform');
     GenericSync.register({'mouse': MouseSync, 'touch': TouchSync});
 
     var MenuView      = require('views/MenuView');
@@ -38,6 +33,7 @@ define(function(require, exports, module) {
         numberOfPlanets: 1
     };
 
+    // define physics engine and whatever forces/constraints
     function _createPhysicsEngine() {
         this.physicsEngine = new PhysicsEngine();
         this.repulsion = new Repulsion({
@@ -57,26 +53,16 @@ define(function(require, exports, module) {
     function _addPlanets() {
         this.planets = [];
         for(var i = 0; i < this.options.numberOfPlanets; i++) {
-            _addPlanet.call(this);
+            var planet = new Planet();
+            this.physicsEngine.addBody(planet.particle);
+            this.physicsEngine.attach(this.repulsion, planet.particle, this.star.particle);
+            this.add(planet.modifier).add(planet.surface);
+            this.planets.push(planet.particle);
         }
-        
-        // TODO: Figure out why this isn't working
-        // for(var i = 0; i < planets.length; i++) {
-        //     this.physicsEngine.attach(this.collision, planets, planets[i]);
-        // }
-    }
-
-    function _addPlanet() {
-        var planet = new Planet();
-
-        this.physicsEngine.addBody(planet.particle);
-        this.physicsEngine.attach(this.repulsion, planet.particle, this.star.particle);
-        this.add(planet.modifier).add(planet.surface);
-        this.planets.push(planet.particle);
     }
 
     function _addMenu() {
-        var menuView = new MenuView();
+        var menuView = new MenuView(['attractor']);
         var menuViewModifier = new StateModifier();
         this.add(menuViewModifier).add(menuView);
 
@@ -85,9 +71,9 @@ define(function(require, exports, module) {
             if(data === 0) {
                 _addSun.call(this);
             } else if(data === 1) {
-                // console.log(this);
+                console.log(this);
                 // this.physicsEngine.removeBody(this.physicsEngine.getBodies()[0]);
-                this._eventOutput.emit('nextLevel', 1);
+                this._eventOutput.emit('changeLevel', 2);
             }
         }.bind(this));
     }
