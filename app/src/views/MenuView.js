@@ -23,7 +23,7 @@ define(function(require, exports, module) {
     function _addItem1() {
         var menuItemView = new MenuItemView({
             color: '#3AF781',
-            icon: '<i class="fa fa-circle-thin fa-2x"></i>'
+            icon: '<i class="fa fa-paper-plane fa-2x"></i>'
         });
 
         var menuItemModifier = new StateModifier({
