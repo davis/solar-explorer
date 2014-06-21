@@ -23,7 +23,7 @@ define(function(require, exports, module) {
     function _addItem1() {
         var menuItemView = new MenuItemView({
             color: '#3AF781',
-            icon: '<i class="fa fa-cube fa-2x"></i>'
+            icon: '<i class="fa fa-circle-thin fa-2x"></i>'
         });
 
         var menuItemModifier = new StateModifier({
@@ -33,9 +33,9 @@ define(function(require, exports, module) {
 
         this.add(menuItemModifier).add(menuItemView);
 
-        menuItemView.on('click', function(){
-            console.log('heard');
-        });
+        menuItemView.on('menuItemClicked', function(){
+            this._eventOutput.emit('menuItemClicked', 0);
+        }.bind(this));
     }
 
     function _addItem2() {
@@ -51,9 +51,9 @@ define(function(require, exports, module) {
 
         this.add(menuItemModifier).add(menuItemView);
 
-        menuItemView.on('click', function(){
-            console.log('heard');
-        });
+        menuItemView.on('menuItemClicked', function(){
+            this._eventOutput.emit('menuItemClicked', 1);
+        }.bind(this));
     }
 
     module.exports = MenuView;
