@@ -28,7 +28,7 @@ define(function(require, exports, module) {
     MenuItemView.DEFAULT_OPTIONS = {
         size: [50, 50],
         color: '#167872',
-        icon: '<i class="fa fa-circle-thin"></i>'
+        icon: '<i class="fa fa-paper-plane"></i>'
     };
 
     function _createMenuItemBackground() {
@@ -44,6 +44,7 @@ define(function(require, exports, module) {
 
         // use for listening to clicks on button
         menuItemSurface.on('mousedown', function() {
+            // TODO: ???
             this.iconSize.set([0,0]);
         }.bind(this));
         menuItemSurface.on('mouseup', function() {

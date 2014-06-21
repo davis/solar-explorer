@@ -48,7 +48,7 @@ define(function(require, exports, module) {
         this.lightbox = new Lightbox(this.options.lightboxOpts);
         this.mainNode.add(this.lightbox);
 
-        this.levels.push(new MainMenu());
+        this.levels.push(new MainMenuView());
         this.levels.push(new Level1View());
         this.levels.push(new Level2View());
 
@@ -57,7 +57,11 @@ define(function(require, exports, module) {
 
     function _setListeners() {
         this.levels[this.currentIndex].on('nextLevel', function() {
-            console.log(this)
+            this.showNextLevel();
+        }.bind(this));
+
+        this.levels[this.currentIndex].on('startGame', function() {
+            this.currentIndex = 0;
             this.showNextLevel();
         }.bind(this));
     }

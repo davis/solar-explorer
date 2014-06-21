@@ -8,6 +8,16 @@ define(function(require, exports, module) {
 
     function MainMenuView() {
         View.apply(this, arguments);
+
+        this.rootModifier = new StateModifier({
+        });
+
+        this.mainNode = this.add(this.rootModifier);
+
+        _addTitleBackground.call(this);
+        _addTitle.call(this);
+        _addPlayBackground.call(this);
+        _addPlay.call(this);
     }
 
     MainMenuView.prototype = Object.create(View.prototype);
@@ -15,11 +25,77 @@ define(function(require, exports, module) {
 
     MainMenuView.DEFAULT_OPTIONS = {};
 
-    var surface = new Surface({
-        content: 'solar system'
-    });
+    function _addTitleBackground() {
+        var surface = new Surface({
+            size: [400, 200],
+            properties: {
+                background: 'white',
+                border: '5px solid #222'
+            }
+        });
 
-    this.add(surface);
+        var modifier = new StateModifier({
+            origin: [0.5, 0.5],
+            align: [0.5, 0.3],
+            opacity: 0.7
+        });
+
+        this.mainNode.add(modifier).add(surface);
+    }
+
+    function _addTitle() {
+        var surface = new Surface({
+            size: [true, true],
+            content: 'solar system',
+        });
+        // TODO: do this during instantiation
+        surface.addClass('main-menu-title');
+
+        var modifier = new StateModifier({
+            origin: [0.5, 0.5],
+            align: [0.5, 0.3]
+        });
+        this.mainNode.add(modifier).add(surface);
+    }
+
+    function _addPlayBackground() {
+        var surface = new Surface({
+            size: [150, 100],
+            properties: {
+                background: '#ED553B',
+                border: '5px solid #222'
+            }
+        });
+
+        var modifier = new StateModifier({
+            origin: [0.5, 0.5],
+            align: [0.65, 0.75]
+        });
+
+        this.mainNode.add(modifier).add(surface);
+        surface.on('mouseup', function() {
+            this._eventOutput.emit('startGame');
+        }.bind(this));
+    }
+
+    function _addPlay() {
+        var surface = new Surface({
+            size: [true, true],
+            content: 'solar system',
+            properties: {
+                color: 'white',
+                pointerEvents: 'none'
+            }
+        });
+        // TODO: do this during instantiation
+        surface.addClass('main-menu-play');
+        
+        var modifier = new StateModifier({
+            origin: [0.5, 0.5],
+            align: [0.65, 0.75],
+        });
+        this.mainNode.add(modifier).add(surface);
+    }
 
     module.exports = MainMenuView;
 });

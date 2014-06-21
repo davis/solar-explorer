@@ -6,3 +6,12 @@ html {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
 }
+
+.main-menu-title, .main-menu-play {
+  font-family: 'Lobster', cursive;
+  font-size: 3rem;
+}
+
+.main-menu-play {
+  font-size: 1rem;
+}
