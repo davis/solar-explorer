@@ -35,7 +35,8 @@ define(function(require, exports, module) {
         var menuItemSurface = new Surface({
             properties: {
                 zIndex: 1,
-                background: this.options.color
+                background: this.options.color,
+                border: '2px solid #222'
             }
         });
 
@@ -43,12 +44,10 @@ define(function(require, exports, module) {
 
         // use for listening to clicks on button
         menuItemSurface.on('mousedown', function() {
-            console.log('down');
             this.iconSize.set([0,0]);
         }.bind(this));
         menuItemSurface.on('mouseup', function() {
-            console.log('up');
-            this._eventOutput.emit('click');
+            this._eventOutput.emit('menuItemClicked');
         }.bind(this));
     }
 
