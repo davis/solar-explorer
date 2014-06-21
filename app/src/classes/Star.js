@@ -2,7 +2,7 @@
 
 define(function(require, exports, module) {
     var Surface = require('famous/core/Surface');
-    var Circle = require('famous/physics/bodies/Circle');
+    var Circle  = require('famous/physics/bodies/Circle');
 
     var DraggableSurfaceParticle = require('classes/DraggableSurfaceParticle');
 
@@ -13,8 +13,8 @@ define(function(require, exports, module) {
      */ 
 
     function Star() {
-        DraggableSurfaceParticle.call(this,
-            new Surface({
+        var options = {
+            surface: new Surface({
                 size: [20, 20],
                 properties: {
                     background: '#F2B134',
@@ -23,24 +23,21 @@ define(function(require, exports, module) {
                     zIndex: 1
                 }
             }),
-            new Circle({
+            particle: new Circle({
                 position: [
                     window.innerWidth / 2,
                     window.innerHeight / 2.5,
                     0
                 ]
-            })
-        );
+            }),
+            throwable: false
+        };
+
+        DraggableSurfaceParticle.call(this, options);
     }
 
-    // Star.prototype = Object.create(View.prototype);
-    // Star.prototype.constructor = Star;
-
-    // Star.DEFAULT_OPTIONS = {};
+    Star.prototype = Object.create(DraggableSurfaceParticle.prototype);
+    Star.prototype.constructor = Star;
 
     module.exports = Star;
-});
-
-
-
-        
+});  
