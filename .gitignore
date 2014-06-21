@@ -15,3 +15,7 @@ dist
 .tmp
 app/lib
 .yo-rc.json
+
+# Other #
+#########
+app/src/views/EmptyView.js
