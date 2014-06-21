@@ -3,6 +3,9 @@
 
 [![Build Status](https://travis-ci.org/davis/solar-system.svg?branch=master)](https://travis-ci.org/davis/solar-system) [![Dependency Status](https://david-dm.org/davis/solar-system.svg)](https://david-dm.org/davis/solar-system) [![devDependency Status](https://david-dm.org/davis/solar-system/dev-status.svg)](https://david-dm.org/davis/solar-system#info=devDependencies)
 
+## Getting solar system working locally
+Clone/download this repo, then uncomment the cdn version of famo.us in the index.html file. Then you should be able to run the command 'grunt serve' and a browser window will open up with the game!
+
 ## Contributing
 All contributions are welcome! The simplest way to show your support for this project is to **"star" it**.
 
