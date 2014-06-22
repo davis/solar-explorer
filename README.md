@@ -1,5 +1,5 @@
-#solar system
-> A simple solar system built with Famo.us physics.
+#Solar Explorer
+> A game built in Famo.us using the physics engine The objective is to safely guide your spaceship to the goal, utilizing stars to influence gravitational pull. Avoid stray planets!
 
 [![Build Status](https://travis-ci.org/davis/solar-system.svg?branch=master)](https://travis-ci.org/davis/solar-system) [![Dependency Status](https://david-dm.org/davis/solar-system.svg)](https://david-dm.org/davis/solar-system) [![devDependency Status](https://david-dm.org/davis/solar-system/dev-status.svg)](https://david-dm.org/davis/solar-system#info=devDependencies)
 
