@@ -1,7 +1,7 @@
 #Solar Explorer
 > A game built in Famo.us using the physics engine The objective is to safely guide your spaceship to the goal, utilizing stars to influence gravitational pull. Avoid stray planets!
 
-[![Build Status](https://travis-ci.org/davis/solar-system.svg?branch=master)](https://travis-ci.org/davis/solar-system) [![Dependency Status](https://david-dm.org/davis/solar-system.svg)](https://david-dm.org/davis/solar-system) [![devDependency Status](https://david-dm.org/davis/solar-system/dev-status.svg)](https://david-dm.org/davis/solar-system#info=devDependencies)
+[![Build Status](https://travis-ci.org/davis/solar-explorer.svg?branch=master)](https://travis-ci.org/davis/solar-explorer) [![Dependency Status](https://david-dm.org/davis/solar-explorer.svg)](https://david-dm.org/davis/solar-explorer) [![devDependency Status](https://david-dm.org/davis/solar-explorer/dev-status.svg)](https://david-dm.org/davis/solar-explorer#info=devDependencies)
 
 ## Getting solar system working locally
 Clone/download this repo, then uncomment the cdn version of famo.us in the index.html file. Then you should be able to run the command 'grunt serve' and a browser window will open up with the game!
