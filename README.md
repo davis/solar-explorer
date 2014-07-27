@@ -4,7 +4,9 @@
 [![Build Status](https://travis-ci.org/davis/solar-explorer.svg?branch=master)](https://travis-ci.org/davis/solar-explorer) [![Dependency Status](https://david-dm.org/davis/solar-explorer.svg)](https://david-dm.org/davis/solar-explorer) [![devDependency Status](https://david-dm.org/davis/solar-explorer/dev-status.svg)](https://david-dm.org/davis/solar-explorer#info=devDependencies)
 
 ## Getting solar system working locally
-Clone/download this repo, then uncomment the cdn version of famo.us in the index.html file. Then you should be able to run the command 'grunt serve' and a browser window will open up with the game!
+* Clone/download this repo, then uncomment the CDN version of famo.us in the index.html file. 
+* Run `npm install` to install all dependencies, from within the main project folder, i.e. `solar-explorer-master`.
+* Run the command `grunt serve` and a browser window will open up with the game!
 
 ## Contributing
 All contributions are welcome! The simplest way to show your support for this project is to **"star" it**.
