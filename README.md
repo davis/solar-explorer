@@ -5,7 +5,13 @@
 
 ## Getting solar system working locally
 * Clone/download this repo, then uncomment the CDN version of famo.us in the index.html file. 
-* Run `npm install` to install all dependencies, from within the main project folder, i.e. `solar-explorer-master`.
+* Make sure you have node installed, see (http://nodejs.org/)
+* brew install node # You can find the project at http://brew.sh/
+* `npm install -g grunt-cli bower`
+
+Now to run the App:
+* `cd` to the `solar-explorer-master` directory.
+* Run `npm install && bower install` to install all dependencies, from within the main project folder, i.e. `solar-explorer-master`.
 * Run the command `grunt serve` and a browser window will open up with the game!
 
 ## Contributing
